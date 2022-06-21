@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -9,6 +10,16 @@ namespace CSharpCollections
 {
     public class Curso
     {
+        private ISet<Aluno> alunos = new HashSet<Aluno>();
+
+        public IList<Aluno> Alunos
+        {
+            get
+            {
+                return new ReadOnlyCollection<Aluno>(alunos.ToList());
+            }
+        }
+
         private IList<Aula> aulas;
 
         public IList<Aula> Aulas
@@ -29,6 +40,11 @@ namespace CSharpCollections
             this.nome = nome;
             this.instrutor = instrutor;
             this.aulas = new List<Aula>();  
+        }
+
+        public void Matricula(Aluno aluno)
+        {
+            alunos.Add(aluno);
         }
 
         public string Nome
@@ -62,6 +78,11 @@ namespace CSharpCollections
         public override string ToString() // Override no metodo ToString para imprimir as aulas
         {
             return $"Curso:{nome} , Tempo: {TempoTotal}, Aulas: {string.Join("," , aulas)}";
+        }
+
+        public bool EstaMatriculado(Aluno aluno)
+        {
+            return alunos.Contains(aluno);
         }
     }
 }

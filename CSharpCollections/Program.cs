@@ -10,28 +10,44 @@ namespace CSharpCollections
     {
         static void Main(string[] args)
         {
-            Curso csharpColecoes = new Curso("C# Collections", "Marcelo");
-            csharpColecoes.Adiciona(new Aula("Trabalhando com Listas", 21));
+            Curso csharpColecaoe = new Curso("C# Coleções", "MArcelo Oliveira");
 
-            //Adicionando 2 aulas
-            csharpColecoes.Adiciona(new Aula("Criando uma Aula", 20));
-            csharpColecoes.Adiciona(new Aula("Modelando com Coleções", 15));
+            csharpColecaoe.Adiciona(new Aula("Trabalhando com Listas", 21));
+            csharpColecaoe.Adiciona(new Aula("Criando uma Aula", 20));
+            csharpColecaoe.Adiciona(new Aula("Modelando com Coleções", 24));
 
-            //Ordenando a lista de aulas
-            //csharpColecoes.Aulas.Sort();
-            
-            //Copiar a lista para outra lista
-            List<Aula> aulasCopiadas = new List<Aula>(csharpColecoes.Aulas);
+            Aluno a1 = new Aluno("Vanessa Tonini", 34672);
+            Aluno a2 = new Aluno("Ana Losnak", 5617);
+            Aluno a3 = new Aluno("Rafael Nercessian", 17645);
 
-            //Ordenar a cópia
-            aulasCopiadas.Sort();
+            csharpColecaoe.Matricula(a1);
+            csharpColecaoe.Matricula(a2);
+            csharpColecaoe.Matricula(a3);
 
-            imprimir(aulasCopiadas);
+            Console.WriteLine("Imprimindo os Alunos Matriculados");
 
-            //Totalizando o tempo do curso
-            Console.WriteLine(csharpColecoes.TempoTotal);
+            foreach (var aluno in csharpColecaoe.Alunos)
+            {
+                Console.WriteLine(aluno);
+            }
 
-            Console.WriteLine(csharpColecoes);
+            //Imprimir: "O aluno a1 está matriculado?"
+            Console.WriteLine($"O aluno a1 {a1.Nome} está matriculado?");
+            //Criar um método EstaMatriculado
+            Console.WriteLine(csharpColecaoe.EstaMatriculado(a1));
+            //Vamos instaciar uma aluna (vanessa Tonini)
+            Aluno tonini = new Aluno("Vanessa Tonini", 34672);
+            //E verificar se Tonini esta matriculada
+            Console.WriteLine($"Tonini esta matriculada? {csharpColecaoe.EstaMatriculado(tonini)}");
+            //Mas a1 == a Tonini?
+            Console.WriteLine($"a1 == a Tonini ? {a1 == tonini}");
+            //O que ocorreu? a1 é equals a Tonini?
+            Console.WriteLine($"a1 é equals a Tonini? {a1.Equals(tonini)}");
+
+
+
+
+
 
             Console.ReadLine();
         }
